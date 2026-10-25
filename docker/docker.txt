@@ -229,6 +229,27 @@ scp with private-ip to instance-2
 
 docker load -i mynginx.tar							: Import as image
 
+1) docker images
+
+2) docker save -o mynginx.tar nginx:latest        ------> Export the image into a TAR file
+
+3) scp mynginx.tar ec2-user@10.0.2.20:/home/ec2-user/    ---> Copy the TAR file to Server 2, scp -> securely copy the file
+
+4) Verify the file on Server 2
+    Connect to Server 2:
+Then run:
+ls -lh /home/ec2-user/mynginx.tar   ----> This verifies that the TAR file arrived successfully.
+
+5) Import the image into Docker on Server 2
+   
+docker load -i /home/ec2-user/mynginx.tar
+
+docker load:   Imports a previously saved Docker image into the local Docker image store.
+-i:            Specifies the input archive.
+/home/ec2-user/mynginx.tar: The transferred image archive.
+
+Example output:
+Loaded image: nginx:latest
 =============
 
 docker networking
